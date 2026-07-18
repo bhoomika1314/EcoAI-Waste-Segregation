@@ -1,52 +1,270 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>EcoAI - Smart Waste Segregation</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-section {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        select {
+            width: 80%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #2e7d32;
+            border-radius: 8px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .bins {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .bin {
+            width: 120px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            background: #f5f5f5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .bin-icon {
+            font-size: 35px;
+        }
+
+        .bin p {
+            margin: 8px 0 0;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            select {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>EcoAI - Smart Waste Segregation Assistant</h1>
+    <header>
+        <h1>🌱 EcoAI</h1>
+        <p>Smart Waste Segregation Assistant</p>
+    </header>
 
-    <p>Select Waste Type:</p>
+    <div class="container">
 
-    <select id="wasteType">
-        <option value="Plastic">Plastic</option>
-        <option value="Paper">Paper</option>
-        <option value="Glass">Glass</option>
-        <option value="Metal">Metal</option>
-        <option value="Organic">Organic</option>
-    </select>
+        <div class="input-section">
 
-    <br><br>
+            <label for="wasteType">
+                Select Waste Type
+            </label>
 
-    <button onclick="identifyWaste()">Identify Waste</button>
+            <select id="wasteType">
+                <option value="Plastic">Plastic</option>
+                <option value="Paper">Paper</option>
+                <option value="Glass">Glass</option>
+                <option value="Metal">Metal</option>
+                <option value="Organic">Organic</option>
+            </select>
 
-    <h3>Result:</h3>
+            <button onclick="identifyWaste()">
+                Identify Waste
+            </button>
 
-    <p id="result">Waste will be identified here.</p>
+        </div>
+
+        <h3>Result:</h3>
+
+        <div id="result">
+            Select a waste type and click "Identify Waste".
+        </div>
+
+        <div class="bins">
+
+            <div class="bin">
+                <div class="bin-icon">♻️</div>
+                <p>Plastic</p>
+                <small>Recyclable</small>
+            </div>
+
+            <div class="bin">
+                <div class="bin-icon">📄</div>
+                <p>Paper</p>
+                <small>Recyclable</small>
+            </div>
+
+            <div class="bin">
+                <div class="bin-icon">🍾</div>
+                <p>Glass</p>
+                <small>Recyclable</small>
+            </div>
+
+            <div class="bin">
+                <div class="bin-icon">🥫</div>
+                <p>Metal</p>
+                <small>Recyclable</small>
+            </div>
+
+            <div class="bin">
+                <div class="bin-icon">🌿</div>
+                <p>Organic</p>
+                <small>Compost</small>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        🌍 Keep our environment clean and green.
+    </footer>
+
 
     <script>
+
         function identifyWaste() {
-            let waste = document.getElementById("wasteType").value;
-            let result = document.getElementById("result");
+
+            let waste =
+                document.getElementById("wasteType").value;
+
+            let result =
+                document.getElementById("result");
+
 
             if (waste === "Plastic") {
-                result.innerHTML = "Plastic waste → Put it in the Recyclable Waste Bin.";
-            } 
-            else if (waste === "Paper") {
-                result.innerHTML = "Paper waste → Put it in the Recyclable Waste Bin.";
-            } 
-            else if (waste === "Glass") {
-                result.innerHTML = "Glass waste → Put it in the Recyclable Waste Bin.";
-            } 
-            else if (waste === "Metal") {
-                result.innerHTML = "Metal waste → Put it in the Recyclable Waste Bin.";
-            } 
-            else if (waste === "Organic") {
-                result.innerHTML = "Organic waste → Put it in the Compost/Wet Waste Bin.";
+
+                result.innerHTML =
+                    "♻️ Plastic waste → Put it in the Recyclable Waste Bin.";
+
             }
+
+            else if (waste === "Paper") {
+
+                result.innerHTML =
+                    "📄 Paper waste → Put it in the Recyclable Waste Bin.";
+
+            }
+
+            else if (waste === "Glass") {
+
+                result.innerHTML =
+                    "🍾 Glass waste → Put it in the Recyclable Waste Bin.";
+
+            }
+
+            else if (waste === "Metal") {
+
+                result.innerHTML =
+                    "🥫 Metal waste → Put it in the Recyclable Waste Bin.";
+
+            }
+
+            else if (waste === "Organic") {
+
+                result.innerHTML =
+                    "🌿 Organic waste → Put it in the Compost/Wet Waste Bin.";
+
+            }
+
         }
+
     </script>
 
 </body>
