@@ -3,25 +3,51 @@
 <head>
     <title>EcoAI - Smart Waste Segregation</title>
 </head>
+
 <body>
+
     <h1>EcoAI - Smart Waste Segregation Assistant</h1>
 
     <p>Select Waste Type:</p>
 
-    <select>
-        <option>Plastic</option>
-        <option>Paper</option>
-        <option>Glass</option>
-        <option>Metal</option>
-        <option>Organic</option>
+    <select id="wasteType">
+        <option value="Plastic">Plastic</option>
+        <option value="Paper">Paper</option>
+        <option value="Glass">Glass</option>
+        <option value="Metal">Metal</option>
+        <option value="Organic">Organic</option>
     </select>
 
     <br><br>
 
-    <button>Identify Waste</button>
+    <button onclick="identifyWaste()">Identify Waste</button>
 
     <h3>Result:</h3>
-    <p>Waste will be identified here.</p>
+
+    <p id="result">Waste will be identified here.</p>
+
+    <script>
+        function identifyWaste() {
+            let waste = document.getElementById("wasteType").value;
+            let result = document.getElementById("result");
+
+            if (waste === "Plastic") {
+                result.innerHTML = "Plastic waste → Put it in the Recyclable Waste Bin.";
+            } 
+            else if (waste === "Paper") {
+                result.innerHTML = "Paper waste → Put it in the Recyclable Waste Bin.";
+            } 
+            else if (waste === "Glass") {
+                result.innerHTML = "Glass waste → Put it in the Recyclable Waste Bin.";
+            } 
+            else if (waste === "Metal") {
+                result.innerHTML = "Metal waste → Put it in the Recyclable Waste Bin.";
+            } 
+            else if (waste === "Organic") {
+                result.innerHTML = "Organic waste → Put it in the Compost/Wet Waste Bin.";
+            }
+        }
+    </script>
 
 </body>
 </html>
