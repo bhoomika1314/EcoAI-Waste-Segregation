@@ -149,6 +149,32 @@
     </header>
 
     <div class="container">
+        <!-- Upload Waste Image Section -->
+
+<div class="upload-section">
+
+    <h2>📷 Upload Waste Image</h2>
+
+    <p>
+        Upload a picture of waste for identification.
+    </p>
+
+    <input
+        type="file"
+        id="wasteImage"
+        accept="image/*"
+        onchange="previewImage()"
+    >
+
+    <div id="imagePreview">
+
+        <p>
+            Your uploaded image will appear here.
+        </p>
+
+    </div>
+
+</div>
 
         <div class="input-section">
 
@@ -264,6 +290,30 @@
             }
 
         }
+        function previewImage() {
+
+    let file = document.getElementById("wasteImage").files[0];
+
+    let preview = document.getElementById("imagePreview");
+
+    if (file) {
+
+        let image = document.createElement("img");
+
+        image.src = URL.createObjectURL(file);
+
+        image.style.width = "300px";
+        image.style.maxWidth = "100%";
+        image.style.marginTop = "20px";
+        image.style.borderRadius = "10px";
+
+        preview.innerHTML = "";
+
+        preview.appendChild(image);
+
+    }
+
+}
 
     </script>
 
