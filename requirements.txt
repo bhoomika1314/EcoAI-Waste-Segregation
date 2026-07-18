@@ -1,4 +1,2 @@
 Flask
-opencv-python
-tensorflow
-numpy
+flask-cors
