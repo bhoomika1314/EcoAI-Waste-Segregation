@@ -242,54 +242,37 @@
         🌍 Keep our environment clean and green.
     </footer>
 
-
     <script>
+    async function identifyWaste() {
 
-        function identifyWaste() {
+    const fileInput = document.getElementById("wasteImage");
+    const result = document.getElementById("result");
 
-            let waste =
-                document.getElementById("wasteType").value;
+    if (fileInput.files.length === 0) {
+        result.innerHTML = "⚠️ Please upload an image first.";
+        return;
+    }
 
-            let result =
-                document.getElementById("result");
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
 
+    try {
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            body: formData
+        });
 
-            if (waste === "Plastic") {
+        const data = await response.json();
 
-                result.innerHTML =
-                    "♻️ Plastic waste → Put it in the Recyclable Waste Bin.";
+        result.innerHTML = `
+            <h3>Prediction: ${data.prediction}</h3>
+            <p>${data.message}</p>
+        `;
 
-            }
-
-            else if (waste === "Paper") {
-
-                result.innerHTML =
-                    "📄 Paper waste → Put it in the Recyclable Waste Bin.";
-
-            }
-
-            else if (waste === "Glass") {
-
-                result.innerHTML =
-                    "🍾 Glass waste → Put it in the Recyclable Waste Bin.";
-
-            }
-
-            else if (waste === "Metal") {
-
-                result.innerHTML =
-                    "🥫 Metal waste → Put it in the Recyclable Waste Bin.";
-
-            }
-
-            else if (waste === "Organic") {
-
-                result.innerHTML =
-                    "🌿 Organic waste → Put it in the Compost/Wet Waste Bin.";
-
-            }
-
-        }
+    } catch (error) {
+        result.innerHTML = "❌ Could not connect to Flask server.";
+    }
+}         
         function previewImage() {
 
     let file = document.getElementById("wasteImage").files[0];
